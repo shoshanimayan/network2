@@ -1,0 +1,10 @@
+*
+!*.gitignore
+!*.html
+!*.jpg
+!*.gif
+!*.py
+!*.ini
+!lab2_files
+*.swp
+*.un~
