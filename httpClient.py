@@ -2,7 +2,7 @@ from socket import *
 import http.client
 
 serverName = 'localhost'
-serverPort = 80
+serverPort = 1200
 
 #clientSocket = socket(AF_INET, SOCK_STREAM)
 #clientSocket.connect((serverName,serverPort))
