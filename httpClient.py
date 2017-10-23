@@ -1,16 +1,9 @@
-from socket import *
 import http.client
+conn = http.client.HTTPConnection('localhost',12000)
+conn.set_tunnel("http://169.234.54.57:6789/lab2.html")
+conn.request("GET", "/")
+r1 = conn.getresponse()
+print(r1.status, r1.reason)
+data1 = r1.read()
+print(data1)
 
-serverName = 'localhost'
-serverPort = 1200
-
-#clientSocket = socket(AF_INET, SOCK_STREAM)
-#clientSocket.connect((serverName,serverPort))
-
-conn = http.client.HTTPSConnection("localhost",serverPort)
-conn.connect()
-conn.request("GET", hR)
-response = conn.getresponse()
-data = response.read()
-print (data)
-conn.close()
