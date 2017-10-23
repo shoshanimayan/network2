@@ -14,15 +14,16 @@ while True:
     try:
         message = connectionSocket.recv(2048)
         filename = message.split()[1]
-        outputdata = f.read()
-#Send one HTTP header line into socket
-#Fill in start
-        connectionSocket.send(b"HTTP/1.1 200 OK\r\n\r\n")
-#Fill in end
-#Send the content of the requested file to the client
-        for i in range(0,len(outputdata)):
-            connectionSocket.send(outputdata[i:i+1])
-        connectionSocket.send(b'\r\n\r\n')
+        with open(filename[1:], "rb") as f:
+            outputdata = f.read()
+            #Send one HTTP header line into socket
+            #Fill in start
+            connectionSocket.send(b"HTTP/1.1 200 OK\r\n\r\n")
+            #Fill in end
+            #Send the content of the requested file to the client
+            for i in range(0,len(outputdata)):
+                connectionSocket.send(outputdata[i:i+1])
+            connectionSocket.send(b'\r\n\r\n')
         connectionSocket.close()
     except IOError:
 
