@@ -1,13 +1,11 @@
 import http.client
 from sys import argv
-if(len(argv) != 3):
-    print("Usage: <httpclient.py> <ip address> <port>")
+if(len(argv) != 4):
+    print("Usage: httpclient.py <ip address> <port> <requested page>")
     exit(1)
 
-conn = http.client.HTTPConnection('localhost', 12000)
-url = argv[1]+":"+argv[2]+"/lab1.html"
-print(url)
-conn.request("GET", "/" + argv[1]+":"+argv[2]+"/lab1.html")
+conn = http.client.HTTPConnection(argv[1], int(argv[2]))
+conn.request("GET", "/" + argv[3])
 r1 = conn.getresponse()
 print(r1.status, r1.reason)
 data1 = r1.read()
