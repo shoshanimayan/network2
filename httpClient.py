@@ -7,8 +7,9 @@ if(len(argv) != 3):
 url = argv[1]+":"+argv[2]
 print (url)
 conn = http.client.HTTPConnection(argv[1], int(argv[2]))
-conn.request("GET", "/" +url+"//lab1.html")
+conn.request("GET", "/lab1.html")
 r1 = conn.getresponse()
 print(r1.status, r1.reason)
 data1 = r1.read()
 print(data1)
+
