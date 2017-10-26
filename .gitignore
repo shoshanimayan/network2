@@ -6,5 +6,7 @@
 !*.py
 !*.ini
 !lab2_files
+!*.pdf
+!*.odt
 *.swp
 *.un~
