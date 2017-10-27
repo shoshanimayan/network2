@@ -4,7 +4,15 @@ import _thread
 
 def worker(conn, addr):
     try:
-        message = conn.recv(2048)
+        feed = b''
+        message = ""
+        byte_count = 0
+        while(1):
+            feed = conn.recv(1)
+            message += feed.decode()
+            byte_count += 1
+            if(byte_count >= 4 and message[-4:] == "\r\n\r\n"):
+                break
         filename = message.split()[1]
         with open(filename[1:], "rb") as f:
             outputdata = f.read()
@@ -30,6 +38,7 @@ def main():
     # Prepare a sever socket
     #Fill in start
     serverPort = 12000
+    serverSocket.setsockopt(SOL_SOCKET, SO_REUSEADDR, 1)
     serverSocket.bind(('', serverPort))
     serverSocket.listen(1)
     #Fill in end

@@ -1,12 +1,20 @@
-import http.client
+from socket import *
 from sys import argv
-if(len(argv) != 4):
-    print(argv)
-    print("Usage: httpclient.py <server_host> <server_port> <filename>")
-    exit(1)
-conn = http.client.HTTPConnection(argv[1], int(argv[2]))
-conn.request("GET", "/" + argv[3])
-r1 = conn.getresponse()
-print(r1.status, r1.reason)
-data = r1.read()
-print(data)
+serverAddress=argv[1]
+serverPort=int(argv[2])
+path=argv[3]
+clientSocket = socket(AF_INET, SOCK_STREAM)
+clientSocket.connect((serverAddress, serverPort))
+
+get_request=("GET /" + path + " HTTP/1.1\r\n\r\n").encode("utf-8")
+clientSocket.send(get_request)
+    
+feed = b''
+message = b""
+while(1):
+    feed = clientSocket.recv(1)
+    if(feed == b""):
+        break
+    message += feed
+print(message)
+clientSocket.close()
