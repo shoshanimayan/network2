@@ -1,3 +1,7 @@
+#Student 1 Name: Paul Grad
+#Student 1 ID: 94574913
+#Student 2 Name: Mayan Shoshani
+#Student 2 ID: 15019784
 from socket import *
 from sys import argv
 serverAddress=argv[1]
