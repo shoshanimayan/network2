@@ -8,5 +8,6 @@
 !lab2_files
 !*.pdf
 !*.odt
+!hw2
 *.swp
 *.un~
